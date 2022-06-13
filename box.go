@@ -50,7 +50,12 @@ func (b *box) ExtractByIndex(i int) (Shape, error) {
 // ReplaceByIndex allows replacing shape by index and returns removed shape.
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
 func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
-	panic("implement me")
+	s, err := b.GetByIndex(i)
+	if err != nil {
+		return s, err
+	}
+	b.shapes[i] = shape
+	return s, nil
 
 }
 
