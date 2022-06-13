@@ -84,7 +84,8 @@ func (b *box) RemoveAllCircles() error {
 	s := []Shape{}
 	for i := range b.shapes {
 		_, test := b.shapes[i].(*Circle)
-		if !test {
+		_, test2 := b.shapes[i].(Circle)
+		if !test && !test2 {
 			s = append(s, b.shapes[i])
 		}
 	}
@@ -92,6 +93,5 @@ func (b *box) RemoveAllCircles() error {
 		return fmt.Errorf("no circles in the box")
 	}
 	b.shapes = s
-
 	return nil
 }
